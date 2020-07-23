@@ -428,6 +428,10 @@ a:focus {
   .slider {
     padding-bottom: 40px;
   }
+
+  .slider__image_1 {
+    margin-top: 40px;
+  }
 }
 
 @media screen and (max-width: 410px) {
