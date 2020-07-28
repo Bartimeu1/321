@@ -25,3 +25,19 @@ $(document).ready(function(){
 		dots:true,
 	});
 });
+
+$(document).ready(function(){
+	$('.reviews__slider').slick({
+		dots:false,
+		arrows:true,
+		slidesToShow:2,
+		responsive:[
+			{
+				breakpoint:1231,
+				settings: {
+					slidesToShow:1,
+				}
+			}
+		]
+	});
+});
