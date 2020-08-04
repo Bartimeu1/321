@@ -107,7 +107,8 @@ select {
 
 .header {
   width: 100%;
-  padding: 53px 0 150px 0;
+  padding-top: 53px;
+  margin-bottom: 140px;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -185,6 +186,7 @@ select {
   height: 4px;
   left: 0;
   border-radius: 15px;
+  transition: 0.5s;
 }
 
 .burger:before {
@@ -193,6 +195,18 @@ select {
 
 .burger:after {
   bottom: 0;
+}
+
+.burger--active:before {
+  transform: rotate(45deg);
+  top: 10px;
+  transition: 0.5s;
+}
+
+.burger--active:after {
+  transform: rotate(-45deg);
+  bottom: 6px;
+  transition: 0.5s;
 }
 
 /* Slider */
@@ -392,13 +406,15 @@ select {
 .list__item {
   flex: 0 1 25%;
   transition: .2s linear;
+  display: flex;
+  flex-direction: column;
 }
 
 .list__line {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  width: 100%;
 }
 
 .list__line-1 {
@@ -408,6 +424,7 @@ select {
 
 .list__line-2 {
   height: 148px;
+  flex-direction: column;
 }
 
 .list__line-3 {
@@ -428,6 +445,8 @@ select {
 .list__line-6 {
   height: 97px;
   flex-direction: row;
+  display: flex;
+  align-items: center;
 }
 
 .list__line-text {
@@ -619,7 +638,7 @@ select {
 
 .review-title {
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
 }
 
 .reviews__slider {
@@ -629,6 +648,7 @@ select {
 .reviews__slider .slick-track {
   display: flex;
   align-items: center;
+  padding: 30px 0;
 }
 
 .reviews__slider .slider__item {
@@ -671,7 +691,6 @@ select {
   flex-direction: column;
   cursor: pointer;
   width: 573px;
-  height: 340px;
   border: 1px solid rgba(208, 206, 206, 0.5);
 }
 
@@ -729,6 +748,7 @@ select {
   line-height: 24px;
   opacity: 0.6;
   font-size: 13px;
+  padding-bottom: 10px;
 }
 
 /* Gift */
@@ -813,6 +833,13 @@ select {
   color: #ffffff;
   line-height: 30px;
   opacity: 0.7;
+  position: relative;
+  transition: 0.2s;
+}
+
+.footer__menu-link:hover {
+  opacity: 1;
+  transition: 0.1s;
 }
 
 .footer__menu__item {
@@ -840,6 +867,15 @@ select {
 
 .social li:last-child {
   margin-right: 0;
+}
+
+.footer__menu-img {
+  display: none;
+}
+
+.footer__menu-links {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1360px) {
@@ -1106,33 +1142,64 @@ select {
 }
 
 @media screen and (max-width: 820px) {
+  .header {
+    margin-bottom: 80px;
+  }
+
   .menu {
     display: none;
   }
 
+  .header--active {
+    justify-content: flex-start;
+  }
+
+  .header__menu__list {
+    margin: 0;
+  }
+
+  .header__menu__list li {
+    margin: 0;
+    margin-right: 40px;
+  }
+
+  .header__menu__list li:last-child {
+    margin-right: 0;
+  }
+
+  .menu--active {
+    display: block;
+  }
+
   .burger {
     display: block;
+    margin-right: 70px;
+  }
+
+  .burger--active {
+    margin-right: 50px;
+    min-width: 26px;
+  }
+
+  .logo--active {
+    display: none;
+  }
+
+  .header__button--active {
+    display: none;
   }
 
   .header__button {
     padding: 10px 20px;
   }
 
-  .slider__item {
+  .slider .slider__item {
     display: block;
     text-align: center;
   }
 
   .slider img {
     display: inline-block;
-  }
-
-  .burger {
-    margin-right: 70px;
-  }
-
-  .header {
-    padding-bottom: 100px;
   }
 
   .slick-track {
@@ -1158,7 +1225,22 @@ select {
   }
 
   .card__message {
-    height: 180px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 725px) {
+  .header__menu__list {
+    font-size: 13px;
+  }
+
+  .header__menu__list li {
+    margin-right: 30px;
+  }
+
+  .burger--active {
+    margin-right: 60px;
   }
 }
 
@@ -1239,6 +1321,11 @@ select {
     margin-bottom: 20px;
     font-size: 14px;
   }
+
+  .card:hover,
+  .list__item:hover {
+    box-shadow: none;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -1279,6 +1366,16 @@ select {
   }
 }
 
+@media screen and (max-width: 645px) {
+  .burger--active {
+    margin-right: 30px;
+  }
+
+  .header__menu__list li {
+    margin-right: 20px;
+  }
+}
+
 @media screen and (max-width: 590px) {
   .search-title {
     font-size: 20px;
@@ -1300,12 +1397,6 @@ select {
     margin-bottom: 15px;
   }
 
-  .card__message {
-    height: 155px;
-    font-size: 13px;
-    font-weight: 400;
-  }
-
   .card__info-name {
     font-size: 15px;
   }
@@ -1323,27 +1414,91 @@ select {
   }
 }
 
-@media screen and (max-width: 535px) {
+@media screen and (max-width: 580px) {
+  .search__form-domains {
+    padding-left: 0;
+    text-align: center;
+    -moz-text-align-last: center;
+         text-align-last: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .menu--active {
+    justify-content: flex-start;
+    margin: 0 auto;
+  }
+
+  .header__menu__list {
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header__menu__list li {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .burger--active {
+    margin-right: -21px;
+  }
+
+  .header {
+    padding-top: 30px;
+    margin-bottom: 40px;
+  }
+
+  .slider .slick-track {
+    padding-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .footer__menu-links {
+    display: none;
+    transition: 0.5s;
+  }
+
+  .footer__menu-links--active {
+    display: flex;
+    transition: 0.5s;
+  }
+
+  .footer__menu-link {
+    font-size: 16px;
+  }
+
+  .footer__menu {
+    flex-direction: column;
+    margin: 0;
+  }
+
   .footer__menu__item {
     padding-right: 0;
   }
 
-  .footer__menu-link {
-    font-size: 13px;
-    line-height: 25px;
+  .footer__menu-title {
+    margin-bottom: 0;
+    margin-right: 20px;
   }
 
-  .footer__menu__item_3 {
-    margin: 0 auto;
-    margin-top: 10px;
+  .footer__menu-img {
+    display: block;
+    height: 6px;
+    transform: rotate(90deg);
   }
 
-  .footer-logo {
-    width: 70px;
+  .footer__menu__topper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
   }
 
-  .gift {
-    margin-bottom: 40px;
+  .footer__menu-img--active {
+    transform: rotate(180deg);
   }
 }
 
@@ -1367,12 +1522,8 @@ select {
 }
 
 @media screen and (max-width: 510px) {
-  .card {
-    height: 360px;
-  }
-
   .reviews__slider .slick-arrow {
-    top: -40px;
+    top: -20px;
     width: 32px;
   }
 
@@ -1387,10 +1538,20 @@ select {
   .card__topper {
     margin-bottom: 10px;
   }
+}
+
+@media screen and (max-width: 460px) {
+  .header__button {
+    font-size: 13px;
+  }
+
+  .header__logo {
+    width: 73px;
+    margin-right: 20px;
+  }
 
   .card__message {
-    margin-bottom: 10px;
-    height: 200px;
+    text-align: center;
   }
 }
 
@@ -1404,29 +1565,11 @@ select {
   .card__inner {
     width: 90%;
   }
-
-  .card {
-    height: 380px;
-  }
-
-  .card__message {
-    margin-bottom: 10px;
-    height: 220px;
-    font-size: 12px;
-  }
 }
 
 @media screen and (max-width: 440px) {
   .header__button {
     padding: 10px 15px;
-  }
-
-  .burger {
-    margin-right: 50px;
-  }
-
-  .header {
-    padding-bottom: 60px;
   }
 
   .slider__text {
@@ -1491,7 +1634,7 @@ select {
   .search__button {
     margin: 0;
     width: 150px;
-    margin-top: 5px;
+    margin-top: 15px;
   }
 
   .search__form-login {
@@ -1527,21 +1670,5 @@ select {
 
   .advantages__item-text {
     font-size: 12px;
-  }
-}
-
-@media screen and (max-width: 354px) {
-  .footer__menu__item_1 {
-    margin-bottom: 10px;
-  }
-
-  .footer__menu__item_3 {
-    margin: 0;
-    margin-top: 0;
-  }
-
-  .footer__menu-link {
-    font-size: 13px;
-    line-height: 20px;
   }
 }

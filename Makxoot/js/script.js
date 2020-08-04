@@ -37,7 +37,38 @@ $(document).ready(function(){
 				settings: {
 					slidesToShow:1,
 				}
-			}
+			},
 		]
 	});
 });
+
+let burger = document.querySelector('.burger');
+let burgerLine = document.querySelector('.burger__line');
+let menu = document.querySelector('.menu');
+let logo = document.querySelector('.logo');
+let header = document.querySelector('.header');
+let headerButton = document.querySelector('.header__button');
+let footerButton = document.querySelector('.footer__menu__topper');
+let footerImg = document.querySelector('.footer__menu-img');
+let footerLinks = document.querySelector('.footer__menu-links');
+let bool = true;
+
+burger.onclick = function() {
+	burger.classList.toggle('burger--active');
+	menu.classList.toggle('menu--active');
+	logo.classList.toggle('logo--active');
+	headerButton.classList.toggle('header__button--active');
+	header.classList.toggle('header--active');
+	if (bool) {
+		burgerLine.remove();
+		bool = false;
+	} else {
+		burger.append(burgerLine);
+		bool = true;
+	}
+}
+
+footerButton.onclick = function() {
+	footerImg.classList.toggle('footer__menu-img--active');
+	footerLinks.classList.toggle('footer__menu-links--active');
+}
