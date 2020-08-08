@@ -48,9 +48,9 @@ let menu = document.querySelector('.menu');
 let logo = document.querySelector('.logo');
 let header = document.querySelector('.header');
 let headerButton = document.querySelector('.header__button');
-let footerButton = document.querySelector('.footer__menu__topper');
-let footerImg = document.querySelector('.footer__menu-img');
-let footerLinks = document.querySelector('.footer__menu-links');
+let footerButton = document.querySelectorAll('.footer__menu__topper');
+let footerImg = document.querySelectorAll('.footer__menu-img');
+let footerLinks = document.querySelectorAll('.footer__menu-links');
 let bool = true;
 
 burger.onclick = function() {
@@ -68,7 +68,17 @@ burger.onclick = function() {
 	}
 }
 
-footerButton.onclick = function() {
-	footerImg.classList.toggle('footer__menu-img--active');
-	footerLinks.classList.toggle('footer__menu-links--active');
+footerButton[0].onclick = function() {
+	footerImg[0].classList.toggle('footer__menu-img--active');
+	footerLinks[0].classList.toggle('footer__menu-links--active');
+}
+
+footerButton[1].onclick = function() {
+	footerImg[1].classList.toggle('footer__menu-img--active');
+	footerLinks[1].classList.toggle('footer__menu-links--active');
+}
+
+footerButton[2].onclick = function() {
+	footerImg[2].classList.toggle('footer__menu-img--active');
+	footerLinks[2].classList.toggle('footer__menu-links--active');
 }
